@@ -1,6 +1,6 @@
 # Sulfobutyl Ether Beta-Cyclodextrin (SBE-Beta-CD)
 
-## ⚠️ Critical Information
+## Key Parameters
 
 - **Degree of substitution (DS): 7**
 - **Substitution position:** primary (C6) hydroxyls of all 7 glucose units
