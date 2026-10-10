@@ -197,29 +197,40 @@ The SBE-β-CD–Curcumin MD simulation and subsequent comparative analysis are c
 
 ```text
 .
+curcuminoid-cyclodextrin-md-simulation/
+│
 ├── README.md
 │
-├── structures/
+├── structures/                              # Input structures
 │   ├── hosts/
 │   │   ├── beta_cd/
 │   │   └── sbe_beta_cd/
-│   └── curcumin/
+│   └── guests/
+│       ├── curcumin/
+│       └── bdmc/
 │
-├── notebooks/
-│   ├── docking/
-│   ├── molecular_dynamics/
-│   └── analysis/
+├── notebooks/                               # Interactive workflows
+│   ├── docking/                             # 4 docking notebooks
+│   ├── md_analysis/                         # CUR + β-CD analysis notebook
+│   └── md_simulations_100ns/                # MD workflow notebooks
+│       └── bcd_cur/
 │
-├── scripts/
-│   ├── docking/
-│   ├── molecular_dynamics/
-│   └── analysis/
+├── scripts/                                 # Reusable scripts
+│   └── docking/
+│       └── clean_receptor.py
 │
-├── results/
-│   ├── docking/
-│   ├── molecular_dynamics/
-│   ├── figures/
-│   └── tables/
+├── results/                                 # Outputs (per stage)
+│   ├── docking/                             # AutoDock Vina outputs + logs
+│   ├── best_poses/                          # Best pose per system (4 × .pdb)
+│   ├── md_simulations_100ns/                # Production MD outputs
+│   │   └── cur_bcd/
+│   │       ├── bcd_only_MD_result/
+│   │       ├── cur_bcd_MD_result/
+│   │       └── cur_only_MD_result/
+│   ├── md_analysis/                         # Trajectory analysis outputs
+│   │   └── bcd_cur/                         # plots + summaries
+│   └── visualization/                       # VMD render
+│       └── cur_bcd_complex.png
 │
 └── docs/
     └── troubleshooting.md
