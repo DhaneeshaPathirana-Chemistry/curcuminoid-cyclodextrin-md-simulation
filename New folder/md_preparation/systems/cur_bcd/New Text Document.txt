@@ -1,0 +1,195 @@
+# CUR + β-CD — MD Preparation
+
+This folder documents the **molecular dynamics preparation** for the
+**curcumin + β-cyclodextrin** system.
+
+The workflow has three stages:
+
+| Stage | Tool | Output folder |
+|-------|------|---------------|
+| 1. System build | CHARMM-GUI Solution Builder | `complex/charmm_gui_outputs/`, `guest/charmm_gui_outputs/` |
+| 2. Min + equilibration | GROMACS 2023.3 (MobaXterm / WSL Ubuntu 24.04) | `complex/min_equil_outputs/`, `guest/min_equil_outputs/` |
+| 3. Production MD (100 ns) | GROMACS 2023.3 + CUDA (Google Colab A100) | `results/md_production/systems/cur_bcd/` |
+
+> **Host reuse:** The β-CD host-only run is shared with the BDMC + β-CD
+> system. Its preparation is documented in
+> [`results/md_preparation/hosts/bcd/`](../../hosts/bcd/README.md).
+>
+> **Guest is not shared:** Each guest run starts from a system-specific
+> docking pose, so the CUR trajectory here is distinct from the CUR
+> trajectory used in the CUR + SBE-β-CD system.
+
+---
+
+## Folder Structure
+
+```
+cur_bcd/
+├── README.md                  (this file)
+│
+├── complex/                   ← CUR + β-CD complex
+│   ├── charmm_gui_outputs/    ← raw CHARMM-GUI .tgz extraction
+│   └── min_equil_outputs/     ← MobaXterm min + equil result
+│
+└── guest/                     ← free CUR (curcumin only)
+    ├── charmm_gui_outputs/
+    └── min_equil_outputs/
+```
+
+**Why is there no `host/` folder here?**
+β-CD is reused across two systems (`cur_bcd` and `bdmc_bcd`), so it lives
+in a shared location: [`results/md_preparation/hosts/bcd/`](../../hosts/bcd/).
+
+**Why is the guest not shared?**
+Each guest run starts from a **system-specific docking pose**. The CUR pose
+used here comes from docking CUR against β-CD, and is not the same as the
+CUR pose used in the CUR + SBE-β-CD system.
+
+---
+
+## Stage 1 — CHARMM-GUI Output
+
+Both the complex and the free guest were built in **CHARMM-GUI Solution
+Builder** using consistent settings so that MM/PBSA energy cancellation
+later is valid.
+
+### Common settings (complex + guest)
+
+| Setting | Value |
+|---------|-------|
+| Force field | CHARMM36m |
+| Water model | TIP3P |
+| Ions | 0.15 M NaCl (SOD + CLA) |
+| Temperature | 298 K |
+| Box type | Cubic |
+| Box size | 34.9 × 34.9 × 34.9 Å |
+| Engine | GROMACS |
+| Equilibration | NVT |
+| Dynamics | NPT |
+
+### Complex — CUR + β-CD
+
+| Property | Value |
+|----------|-------|
+| Guest | Curcumin (resname `CUR`, 47 atoms) |
+| Host | β-Cyclodextrin (resname `BCD`, 147 atoms) |
+| Total solute | 194 atoms |
+| System composition | CUR 1, BCD 1, SOD 3, CLA 3, TIP3 1284 |
+
+### Guest — free Curcumin
+
+| Property | Value |
+|----------|-------|
+| Guest | Curcumin (resname `CUR`, 47 atoms) |
+| System composition | CUR 1, SOD 3, CLA 3, TIP3 ~1366 |
+
+The guest starting conformation was taken from the **best docking pose**
+of curcumin against β-CD (see
+[`results/best_poses/README.md`](../../../best_poses/README.md)).
+
+### Files in each `charmm_gui_outputs/`
+
+| File | Purpose |
+|------|---------|
+| `step3_input.gro` | Original pre-minimization coordinates |
+| `topol.top` | Full topology |
+| `index.ndx` | Atom groups |
+| `step4.0_minimization.mdp` | Minimization settings |
+| `step4.1_equilibration.mdp` | Equilibration settings |
+| `step5_production.mdp` | Production settings (unmodified, nsteps = 500000) |
+| `toppar/` | Force field parameters |
+
+---
+
+## Stage 2 — Min + Equilibration (MobaXterm)
+
+Run locally in **MobaXterm** (WSL Ubuntu 24.04, GROMACS 2023.3,
+8 OpenMP threads, ~30 ns/day).
+
+### Commands (identical for complex and guest)
+
+**Energy minimization:**
+
+```bash
+gmx grompp -f step4.0_minimization.mdp -c step3_input.gro \
+    -r step3_input.gro -p topol.top -n index.ndx \
+    -o step4_0_minimization.tpr -maxwarn 1
+gmx mdrun -deffnm step4_0_minimization -v
+```
+
+**Equilibration (NVT + NPT, 125 ps):**
+
+```bash
+gmx grompp -f step4.1_equilibration.mdp \
+    -c step4_0_minimization.gro -r step4_0_minimization.gro \
+    -p topol.top -n index.ndx \
+    -o step4_1_equilibration.tpr -maxwarn 1
+gmx mdrun -deffnm step4_1_equilibration -v
+```
+
+**Preparation for Colab:**
+
+```bash
+cp step4_1_equilibration.gro step3_input.gro
+gmx grompp -f step5_production.mdp -c step3_input.gro \
+    -p topol.top -n index.ndx \
+    -o step5_production.tpr -maxwarn 1
+```
+
+### Results
+
+| System | Min convergence | E_pot (kJ/mol) | Equil | Performance |
+|--------|-----------------|----------------|-------|-------------|
+| Complex (CUR + β-CD) | 18 steps | −6.256 × 10⁴ | 125 ps | 30.7 ns/day |
+| Guest (CUR) | pending | — | — | — |
+
+### Files in `min_equil_outputs/`
+
+| File | Notes |
+|------|-------|
+| `step3_input.gro` | Equilibrated (renamed from `step4_1_equilibration.gro`) |
+| `step5_production.mdp` | Edited — nsteps = 50000000 (100 ns) |
+| `step5_production.tpr` | Colab-ready binary |
+| `step4_0_minimization.log`, `step4_1_equilibration.log` | Proof of preparation |
+| `topol.top`, `index.ndx`, `toppar/` | Carried over from `charmm_gui_outputs/` |
+
+> ** Overwrite note:** `min_equil_outputs/step3_input.gro` is the
+> **equilibrated** structure, not the CHARMM-GUI original. The original
+> pre-minimization coordinates are preserved in
+> `charmm_gui_outputs/step3_input.gro`.
+
+---
+
+## Stage 3 — Production MD
+
+100 ns production was run on **Google Colab** (A100 GPU, CUDA-GROMACS).
+Outputs live in:
+
+- Complex → `results/md_production/systems/cur_bcd/complex/`
+- Guest   → `results/md_production/systems/cur_bcd/guest/`
+
+---
+
+## MM/PBSA Input Mapping
+
+For the multiple-trajectory MM/PBSA calculation of **CUR + β-CD**, the
+three required trajectories come from:
+
+| Role | Source |
+|------|--------|
+| Complex | `results/md_production/systems/cur_bcd/complex/` |
+| Receptor (host) | `results/md_production/hosts/bcd/` |
+| Ligand (guest) | `results/md_production/systems/cur_bcd/guest/` |
+
+---
+
+## Related Documentation
+
+| Topic | Location |
+|-------|----------|
+| Docking results | `results/docking/README.md` |
+| Best poses | `results/best_poses/README.md` |
+| Complex building | `results/complexes/README.md` |
+| Shared β-CD host | `results/md_preparation/hosts/bcd/README.md` |
+| Production MD | `results/md_production/README.md` |
+| MD workflow (notebooks) | `notebooks/molecular_dynamics/README.md` |
