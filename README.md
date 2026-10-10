@@ -246,13 +246,13 @@ The project uses a combination of molecular modelling, docking, molecular dynami
 * **UCSF ChimeraX** — molecular structure inspection and DockPrep
 * **AutoDock Tools** — molecular preparation for docking
 * **PyRx** — molecular preparation and docking workflow
-* **AutoDock Vina** — molecular docking
+* **AutoDock Vina v1.2.3** — molecular docking
 * **CHARMM-GUI** — preparation of GROMACS input files
-* **GROMACS** — molecular dynamics simulations and trajectory processing
-* **VMD** — molecular dynamics trajectory visualization
-* **Python** — data processing and analysis
+* **GROMACS 2023.3** — molecular dynamics simulations and trajectory processing
+* **VMD 2.0.0a6** — molecular dynamics trajectory visualization
+* **Python 3.10+** — data processing and analysis
 * **Google Colab** — computational notebooks and molecular dynamics workflow
-* **MobaXterm** — terminal-based computational workflow
+* **MobaXterm (WSL Ubuntu 24.04)** — terminal-based computational workflow
 
 Software versions and relevant computational parameters will be documented in the corresponding workflow files where applicable.
 
