@@ -372,4 +372,4 @@ This repository documents an ongoing computational study comparing the
 inclusion complexation of curcumin and bisdemethoxycurcumin with
 β-cyclodextrin and sulfobutyl ether β-cyclodextrin, using molecular docking
 and 100 ns molecular dynamics simulations. Documentation is updated as the
-workflow progresses.
+workflow progresses. 
