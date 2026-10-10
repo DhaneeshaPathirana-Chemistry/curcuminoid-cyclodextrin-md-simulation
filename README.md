@@ -333,27 +333,27 @@ This documentation will focus on significant issues that are relevant to underst
 
 ### Completed
 
-☑ Preparation of β-CD, SBE-β-CD, curcumin, and BDMC structures
-☑ Molecular docking — all four systems
-☑ Best-pose extraction and complex building — all four systems
-☑ GROMACS system preparation — CUR + β-CD
-☑ Energy minimization + equilibration — CUR + β-CD
-☑ 100 ns production MD — CUR + β-CD
-☑ PBC correction + trajectory analysis — CUR + β-CD
-☑ VMD visualization — CUR + β-CD
+
+* ☑ Molecular docking — all four systems
+* ☑ Best-pose extraction and complex building — all four systems
+* ☑ GROMACS system preparation — CUR + β-CD
+* ☑ Energy minimization + equilibration — CUR + β-CD
+* ☑ 100 ns production MD — CUR + β-CD
+* ☑ PBC correction + trajectory analysis — CUR + β-CD
+
 
 ### In Progress
 
-□ MM-PBSA analysis - CUR + β-CD
+* □ MM-PBSA analysis - CUR + β-CD
+* 100 ns production MD — CUR + SBE-β-CD
 
 ### Planned
 
-□ 100 ns production MD — CUR + SBE-β-CD
-□ GROMACS system preparation + MD — BDMC + β-CD
-□ GROMACS system preparation + MD — BDMC + SBE-β-CD
-□ Trajectory analysis — remaining three systems
-□ Comparative analysis across all four systems
-□ Final figures and summary tables
+* □ GROMACS system preparation + MD — BDMC + β-CD
+* □ GROMACS system preparation + MD — BDMC + SBE-β-CD
+* □ Trajectory analysis — remaining three systems
+* □ Comparative analysis across all four systems
+* □ Final figures and summary tables
 
 ---
 
