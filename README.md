@@ -1,41 +1,58 @@
-# Comparative Inclusion Complexation of Curcumin with β-Cyclodextrin and Sulfobutyl Ether β-Cyclodextrin
+# Comparative Inclusion Complexation of Curcumin and Bisdemethoxycurcumin with β-Cyclodextrin and Sulfobutyl Ether β-Cyclodextrin
 
 ## Project Overview
 
-This computational chemistry project investigates the inclusion complexation of **curcumin (CUR)** with two cyclodextrin-based host molecules:
+This computational chemistry project investigates the inclusion complexation of
+two naturally occurring **curcuminoids** with two cyclodextrin-based host
+molecules:
 
-* **β-cyclodextrin (β-CD)**
-* **Sulfobutyl ether β-cyclodextrin (SBE-β-CD)**
+**Guests**
+- **Curcumin (CUR)**
+- **Bisdemethoxycurcumin (BDMC)**
+
+**Hosts**
+- **β-cyclodextrin (β-CD)**
+- **Sulfobutyl ether β-cyclodextrin (SBE-β-CD)**
 
 Molecular docking and molecular dynamics (MD) simulations are being used to investigate the interactions, binding orientations, and structural behavior of curcumin within the two host molecules.
 
-The study focuses on a comparative computational analysis of:
+| # | System | Short name |
+|---|--------|------------|
+| 1 | Curcumin + β-CD | `cur_bcd` |
+| 2 | Curcumin + SBE-β-CD | `cur_sbe_bcd` |
+| 3 | Bisdemethoxycurcumin + β-CD | `bdmc_bcd` |
+| 4 | Bisdemethoxycurcumin + SBE-β-CD | `bdmc_sbe_bcd` |
 
-* **β-CD–Curcumin**
-* **SBE-β-CD–Curcumin**
+The comparison focuses on:
 
+- Preferred binding orientations of each curcuminoid inside each host cavity
+- Non-covalent interactions (hydrogen bonds, van der Waals contacts)
+- Structural stability of each inclusion complex over 100 ns
+- Effect of the sulfobutyl ether modification on binding and stability
+- Comparative behavior of curcumin vs. bisdemethoxycurcumin
+  
 ---
 
 ## Research Objective
 
-The primary objective of this study is to investigate and compare the molecular interactions and stability of curcumin inclusion complexes formed with β-CD and SBE-β-CD.
-
-The study aims to explore:
-
-1. The preferred orientation of curcumin within the cyclodextrin cavities.
-2. The interactions between curcumin and the cyclodextrin host molecules.
-3. The structural stability of the inclusion complexes during molecular dynamics simulations.
-4. Differences in the behavior of curcumin when complexed with β-CD and SBE-β-CD.
-5. The influence of the sulfobutyl ether modification on the interaction and stability of the curcumin complex.
+1. Identify the preferred orientation of CUR and BDMC within the β-CD and
+   SBE-β-CD cavities.
+2. Characterize host–guest interactions stabilizing each inclusion complex.
+3. Assess the structural stability of each complex during 100 ns MD.
+4. Compare CUR vs. BDMC behavior in each host.
+5. Compare β-CD vs. SBE-β-CD behavior for each guest.
+6. Evaluate the influence of the sulfobutyl ether modification on complexation.
 
 ---
 
 ## Computational Systems
 
-| Host     | Guest    | Molecular Docking | Molecular Dynamics |
-| -------- | -------- | ----------------- | ------------------ |
-| β-CD     | Curcumin | Completed         | Completed          |
-| SBE-β-CD | Curcumin | Completed         | In progress        |
+| Host | Guest | Docking | MD (100 ns) | Analysis |
+|------|-------|---------|-------------|----------|
+| β-CD | Curcumin | ✅ Completed | ✅ Completed | 🔄 In progress |
+| SBE-β-CD | Curcumin | ✅ Completed | 🔄 In progress | ⏳ Pending |
+| β-CD | BDMC | ✅ Completed | ⏳ Pending | ⏳ Pending |
+| SBE-β-CD | BDMC | ✅ Completed | ⏳ Pending | ⏳ Pending |
 
 ---
 
@@ -43,9 +60,27 @@ The study aims to explore:
 
 The computational workflow consists of the following stages:
 
-**Molecular structure preparation → Molecular docking → Selection and preparation of docked complex → GROMACS system preparation → Energy minimization and equilibration → Molecular dynamics simulation → Trajectory processing → Trajectory analysis → Comparative analysis**
+**Structure preparation
+↓
+Molecular docking (AutoDock Vina)
+↓
+Selection and preparation of the docked complex (UCSF ChimeraX + DockPrep)
+↓
+GROMACS system preparation (CHARMM-GUI)
+↓
+Energy minimization + equilibration (GROMACS via MobaXterm)
+↓
+Production MD — 100 ns (GROMACS via Google Colab / GPU)
+↓
+Trajectory post-processing — PBC correction (GROMACS via MobaXterm)
+↓
+Visualization (VMD) + Trajectory analysis (Python / Colab)
+↓
+Binding free energy (gmx_MMPBSA)
+↓
+Comparative analysis across all four systems**
 
-Molecular docking has been completed for both host–guest systems.
+Molecular docking has been completed for all host–guest systems.
 
 Molecular dynamics simulation has been completed for the **β-CD–Curcumin** complex. The MD workflow is currently being extended to the **SBE-β-CD–Curcumin** complex.
 
@@ -63,10 +98,11 @@ The molecular structures of the host and guest molecules were prepared and inspe
 ### Guest molecule
 
 * Curcumin (CUR)
+* Bisdemethoxycurcumin (BDMC)
 
-Structure preparation and inspection involved **Avogadro** and **UCSF ChimeraX**.
+Structure preparation and inspection involved **Avogadro2** and **UCSF ChimeraX version: 1.6.1**.
 
-Energy minimization and preparation of the molecules for docking were carried out using **AutoDock Tools** and **PyRx**, as applicable to the individual molecular systems.
+Energy minimization and preparation of the molecules for docking were carried out using **AutoDock Tools 1.5.7** and **PyRx**, as applicable to the individual molecular systems.
 
 The detailed preparation steps are documented in the corresponding notebooks and workflow files.
 
@@ -74,7 +110,7 @@ The detailed preparation steps are documented in the corresponding notebooks and
 
 ## Molecular Docking
 
-Molecular docking was performed for both host–guest systems using **AutoDock Vina**.
+Molecular docking was performed for both host–guest systems using **AutoDock Vina v1.2.3**.
 
 ### β-CD–Curcumin
 
@@ -185,7 +221,7 @@ Final docking scores, selected poses, interaction analyses, and visualization fi
 
 ### Molecular Dynamics
 
-The β-CD–Curcumin MD simulation has been completed.
+The β-CD–Curcumin 100ns MD simulation has been completed.
 
 Final trajectory-analysis results and figures will be added following completion of the analysis.
 
@@ -284,7 +320,7 @@ Large raw simulation trajectories and unnecessary intermediate files may be excl
 Important computational issues encountered during development of the workflow will be documented in:
 
 ```text
-docs/troubleshooting.md
+docs/troubleshooting_cur_bcd.md
 ```
 
 This documentation will focus on significant issues that are relevant to understanding or reproducing the computational workflow, including topology and residue-naming issues encountered during preparation of the β-CD–Curcumin system.
@@ -297,23 +333,27 @@ This documentation will focus on significant issues that are relevant to underst
 
 ### Completed
 
-* [x] Preparation of β-CD structure
-* [x] Preparation of SBE-β-CD structure
-* [x] Preparation of curcumin structure
-* [x] β-CD–Curcumin molecular docking
-* [x] SBE-β-CD–Curcumin molecular docking
-* [x] Selection and preparation of β-CD–Curcumin docked complex
-* [x] β-CD–Curcumin GROMACS system preparation
-* [x] β-CD–Curcumin molecular dynamics simulation
+☑ Preparation of β-CD, SBE-β-CD, curcumin, and BDMC structures
+☑ Molecular docking — all four systems
+☑ Best-pose extraction and complex building — all four systems
+☑ GROMACS system preparation — CUR + β-CD
+☑ Energy minimization + equilibration — CUR + β-CD
+☑ 100 ns production MD — CUR + β-CD
+☑ PBC correction + trajectory analysis — CUR + β-CD
+☑ VMD visualization — CUR + β-CD
 
 ### In Progress
 
-* [ ] β-CD–Curcumin trajectory analysis
-* [ ] SBE-β-CD–Curcumin molecular dynamics simulation
-* [ ] SBE-β-CD–Curcumin trajectory analysis
-* [ ] Comparative analysis of the two complexes
-* [ ] Final figures and tables
-* [ ] Final interpretation of results
+□ MM-PBSA analysis - CUR + β-CD
+
+### Planned
+
+□ 100 ns production MD — CUR + SBE-β-CD
+□ GROMACS system preparation + MD — BDMC + β-CD
+□ GROMACS system preparation + MD — BDMC + SBE-β-CD
+□ Trajectory analysis — remaining three systems
+□ Comparative analysis across all four systems
+□ Final figures and summary tables
 
 ---
 
@@ -328,4 +368,8 @@ University of Peradeniya, Sri Lanka
 
 ## Project Note
 
-This repository documents an ongoing computational chemistry study of curcumin inclusion complexes with β-cyclodextrin and sulfobutyl ether β-cyclodextrin using molecular docking and molecular dynamics simulations.
+This repository documents an ongoing computational study comparing the
+inclusion complexation of curcumin and bisdemethoxycurcumin with
+β-cyclodextrin and sulfobutyl ether β-cyclodextrin, using molecular docking
+and 100 ns molecular dynamics simulations. Documentation is updated as the
+workflow progresses.
