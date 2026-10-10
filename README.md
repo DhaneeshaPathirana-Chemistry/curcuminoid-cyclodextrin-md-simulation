@@ -344,8 +344,8 @@ This documentation will focus on significant issues that are relevant to underst
 
 ### In Progress
 
-* □ MM-PBSA analysis - CUR + β-CD
-* 100 ns production MD — CUR + SBE-β-CD
+* 🔄 MM-PBSA analysis - CUR + β-CD
+* 🔄 100 ns production MD — CUR + SBE-β-CD
 
 ### Planned
 
