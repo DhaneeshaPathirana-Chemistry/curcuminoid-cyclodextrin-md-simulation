@@ -16,7 +16,7 @@ and guest shown as cyan dashed lines.
 
 ---
 
-## 🔧 Render details
+## Render details
 
 | Parameter | Value |
 |-----------|-------|
@@ -27,7 +27,7 @@ and guest shown as cyan dashed lines.
 
 ---
 
-## 🎨 Representations used
+## Representations used
 
 | # | Style | Material | Color | Selection | Purpose |
 |---|-------|----------|-------|-----------|---------|
