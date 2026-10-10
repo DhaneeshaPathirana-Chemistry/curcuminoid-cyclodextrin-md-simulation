@@ -1,0 +1,40 @@
+CUR-BCD MD Analysis Summary
+==================================================
+system                          : CUR + BCD (curcumin / beta-cyclodextrin)
+frames_analyzed                 : 1001
+timestamp                       : 2026-09-15T09:08:18.433246
+rmsd_complex_mean_A             : 4.12
+rmsd_complex_std_A              : 1.9
+rmsd_complex_median_A           : 3.61
+rmsd_complex_pct_excluded       : 0.0
+rmsd_host_mean_A                : 1.74
+rmsd_host_std_A                 : 0.15
+rmsd_host_median_A              : 1.75
+rmsd_guest_mean_A               : 3.63
+rmsd_guest_std_A                : 0.61
+rmsd_guest_median_A             : 3.7
+rmsd_guest_pct_excluded         : 8.0
+rg_mean_A                       : 6.73
+rg_std_A                        : 1.65
+rg_median_A                     : 6.23
+rg_max_A                        : 12.87
+rg_clean_mean_A                 : 6.25
+rg_clean_std_A                  : 0.13
+hbond_mean                      : 2.88
+hbond_std                       : 1.53
+hbond_median                    : 3.0
+hbond_max                       : 10
+rmsf_complex_mean_A             : 2.26
+rmsf_complex_max_A              : 11.18
+rmsf_bcd_mean_A                 : 0.93
+rmsf_cur_mean_A                 : 6.4
+rmsf_cur_clean_mean_A           : 6.08
+rmsf_cur_clean_max_A            : 11.19
+com_distance_median_A           : 2.01
+com_distance_clean_mean_A       : 2.23
+com_distance_clean_std_A        : 1.15
+com_distance_95pct_A            : 4.33
+sasa_cur_free_A2                : 381.8
+sasa_cur_in_complex_A2          : 223.7
+delta_sasa_A2                   : 158.1
+pct_cur_buried                  : 41.4
