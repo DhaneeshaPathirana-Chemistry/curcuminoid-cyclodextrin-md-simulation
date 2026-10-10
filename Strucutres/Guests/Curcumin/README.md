@@ -1,6 +1,6 @@
 # Curcumin (CUR)
 
-## Key Parameters
+## ⚠️ Critical Information
 
 - **Molecule type:** Polyphenolic curcuminoid (guest)
 - **Source:** PubChem
