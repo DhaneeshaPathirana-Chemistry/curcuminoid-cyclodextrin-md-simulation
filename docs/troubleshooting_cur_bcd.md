@@ -305,7 +305,6 @@ For MM/PBSA: place it inside the `&pb` namelist:
 - `results/analysis/mm_pbsa/README.md` — MM/PBSA setup
 - `results/visualization/cur_bcd/README.md` — VMD workflow
 ```
-
 ---
 
 ##  What I removed and why
@@ -321,4 +320,4 @@ For MM/PBSA: place it inside the `&pb` namelist:
 | `mmpbsa.in` is a directory | Trivial typo |
 | Wrong file extension | Trivial |
 
----
+```
