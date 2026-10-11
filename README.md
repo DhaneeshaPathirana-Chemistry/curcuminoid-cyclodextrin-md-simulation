@@ -60,25 +60,25 @@ The comparison focuses on:
 
 The computational workflow consists of the following stages:
 
-**Structure preparation
-↓
+Structure preparation
+      ↓
 Molecular docking (AutoDock Vina)
-↓
+      ↓
 Selection and preparation of the docked complex (UCSF ChimeraX + DockPrep)
-↓
+      ↓
 GROMACS system preparation (CHARMM-GUI)
-↓
+      ↓
 Energy minimization + equilibration (GROMACS via MobaXterm)
-↓
+      ↓
 Production MD — 100 ns (GROMACS via Google Colab / GPU)
-↓
+      ↓
 Trajectory post-processing — PBC correction (GROMACS via MobaXterm)
-↓
+      ↓
 Visualization (VMD) + Trajectory analysis (Python / Colab)
-↓
+      ↓
 Binding free energy (gmx_MMPBSA)
-↓
-Comparative analysis across all four systems**
+      ↓
+Comparative analysis across all four systems
 
 Molecular docking has been completed for all host–guest systems.
 
