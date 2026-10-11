@@ -60,6 +60,7 @@ The comparison focuses on:
 
 The computational workflow consists of the following stages:
 
+```
 Structure preparation
       ↓
 Molecular docking (AutoDock Vina)
@@ -79,6 +80,8 @@ Visualization (VMD) + Trajectory analysis (Python / Colab)
 Binding free energy (gmx_MMPBSA)
       ↓
 Comparative analysis across all four systems
+
+```
 
 Molecular docking has been completed for all host–guest systems.
 
