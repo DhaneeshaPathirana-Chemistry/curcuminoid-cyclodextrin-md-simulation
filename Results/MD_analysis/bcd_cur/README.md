@@ -1,9 +1,5 @@
 # CUR–BCD MD Analysis Results
 
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-![Status](https://img.shields.io/badge/status-complete-success.svg)
-![MD length](https://img.shields.io/badge/MD%20length-100%20ns-purple.svg)
-
 Analysis outputs from a **100 ns Molecular Dynamics simulation** of a
 **Curcumin (CUR) / β-Cyclodextrin (BCD)** inclusion complex.
 
@@ -44,7 +40,7 @@ for reproducibility.
 
 ---
 
-## 📈 Figures
+## Figures
 
 All figures are in [`results/figures/`](results/figures/):
 
@@ -95,13 +91,13 @@ This project is licensed under the **MIT License** — see [LICENSE](LICENSE).
 
 ---
 
-## 👤 Author
+## Author
 
 **Dhaneesha Pathirana**
 
 ---
 
-## 🙏 Acknowledgements
+## Acknowledgements
 
 - [MDAnalysis](https://www.mdanalysis.org/) — trajectory analysis
 - [GROMACS](https://www.gromacs.org/) — MD engine that produced the trajectory
